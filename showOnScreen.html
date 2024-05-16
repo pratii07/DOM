@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            padding: 40px;
+            background: #fb9999;
+        }
+        .task{
+            display: flex;
+            margin: 10px;
+            border-radius: 5px;
+            padding: 3px;
+        }
+        button{
+            margin: 10px;
+            padding: 7px;
+            width: 91px;
+            border: 2px black solid;
+            background: rgb(153, 233, 153);
+        }
+        #box{
+            border: 2px black solid;
+            height: 190px;
+            width: 290px;
+            margin: 20px 20px 20px 0px;
+            background-color: rgb(249, 234, 214);
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="takevalue(event)">
+        <h1>Registration Form</h1>
+        <label for="username">UserName :</label>
+        <input type="text" name="username" class="task" id="username">
+        <label for="password">Password :</label>
+        <input type="text" name="password" class="task" id="password">
+        <button type="submit" id="btn">Login</button>
+        <div id="box"></div>
+    </form>
+    
+    <script>
+        function takevalue(event){
+            event.preventDefault(); // Prevent form submission
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var box = document.getElementById("box");
+            box.innerHTML = "<p><strong>Here Is Your Information :</strong></p><p>Username: " + username + "</p><p>Password: " + password + "</p>";
+        }
+    </script>
+</body>
+</html>

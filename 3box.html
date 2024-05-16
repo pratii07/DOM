@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            display: flex;
+            height: 300px;
+            width: auto;
+            margin: 30px 30px 0px 30px;
+            background-color: rgb(231, 180, 180);
+        }
+        #box2 {
+            background-color: rgb(231, 180, 180);
+            height: 200px;
+            margin: 0px 30px 30px 30px;
+        }
+        .inner {
+            height: 190px;
+            width: 170px;
+            margin: 30px;
+            background-color: aquamarine;
+            text-align: center;
+        }
+        button {
+            height: 40px;
+            width: 100px;
+            border-radius: 22px;
+            background-color: rgb(153, 212, 212);
+            margin: 65px;
+        }
+        img {
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div class="inner" id="inner1">Colour</div>
+        <div class="inner" id="inner2">Captcha</div>
+        <div class="inner" id="inner3">BackGround
+            <img src="a2.jpg" alt="Bg" id="bgImage">
+        </div>
+    </div>
+    <div id="box2">
+        <button class="btn1">Colour</button>
+        <button class="btn1" id="generateCaptcha">Captcha</button>
+        <button class="btn1" id="changeBg">BG</button>
+    </div>
+
+    <script>
+        function generateRandomColor() {
+            const red = Math.floor(Math.random() * 256);
+            const green = Math.floor(Math.random() * 256);
+            const blue = Math.floor(Math.random() * 256);
+            return `rgb(${red}, ${green}, ${blue})`; 
+        }
+        
+        const btn = document.querySelector('.btn1');
+        const colorDiv = document.getElementById('inner1');
+        const captchaBtn = document.getElementById('generateCaptcha');
+        const bgBtn = document.getElementById('changeBg');
+        
+        btn.addEventListener('click', () => {
+            const randomColor = generateRandomColor();
+            colorDiv.style.background = randomColor;
+            colorDiv.style.boxShadow = '0 0 30px black';
+            colorDiv.style.transition = '.5s ease';
+        });
+
+        captchaBtn.addEventListener('click', () => {
+            const captchaText = generateCaptchaText();
+            displayCaptcha(captchaText);
+        });
+
+        bgBtn.addEventListener('click', () => {
+            const randomColor = generateRandomColor();
+            const bgDiv = document.getElementById('inner3');
+            bgDiv.style.background = randomColor;
+        });
+
+        function generateCaptchaText() {
+            const charPool = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let captchaText = "";
+            for (let i = 0; i < 6; i++) { 
+                captchaText += charPool.charAt(Math.floor(Math.random() * charPool.length));
+            }
+            return captchaText;
+        }
+
+        function displayCaptcha(text) {
+            const captchaElement = document.getElementById("inner2"); 
+            captchaElement.textContent = text;
+        }
+    </script>
+</body>
+</html>
